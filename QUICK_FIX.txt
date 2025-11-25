@@ -1,0 +1,46 @@
+========================================
+QUICK FIX FOR SSH CONNECTION CLOSED
+========================================
+
+PROBLEM: Server is closing connection (IP blocked)
+
+SOLUTION 1: WAIT 15 MINUTES
+----------------------------
+Your IP was blocked due to too many failed password attempts.
+Just wait 15 minutes, then try again:
+
+ssh root@146.190.90.47
+Password: Fujimori6Riho
+
+SOLUTION 2: USE DIGITALOCEAN WEB CONSOLE
+----------------------------------------
+1. Go to: https://cloud.digitalocean.com
+2. Click on your droplet
+3. Click "Access" → "Launch Droplet Console"
+4. Login via web console
+5. Upload files manually or use SCP from server
+
+SOLUTION 3: CHECK IF PASSWORD IS CORRECT
+-----------------------------------------
+Make sure password is exactly: Fujimori6Riho
+(No spaces, correct capitalization)
+
+SOLUTION 4: TRY FROM DIFFERENT NETWORK
+---------------------------------------
+If you have mobile hotspot, try connecting from there
+(Your IP will be different, so not blocked)
+
+========================================
+BEST ACTION NOW:
+========================================
+
+1. WAIT 15 MINUTES
+2. Then run: ssh root@146.190.90.47
+3. Enter password: Fujimori6Riho
+
+OR
+
+Use DigitalOcean web console to access server directly!
+
+========================================
+

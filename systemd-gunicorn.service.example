@@ -1,0 +1,19 @@
+[Unit]
+Description=Gunicorn instance to serve WiFi Hotspot App
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/saveemail
+Environment="PATH=/var/www/saveemail/venv/bin"
+ExecStart=/var/www/saveemail/venv/bin/gunicorn \
+          --config /var/www/saveemail/gunicorn_config.py \
+          app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+

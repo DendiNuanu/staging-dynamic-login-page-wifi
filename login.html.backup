@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome To NUANU Free WiFi</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://wifi.nuanu.io/img/nuanu.png') no-repeat center center fixed;
+      background-size: cover;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      flex: 1 1 340px;
+      max-width: 520px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-card {
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .form-card {
+        padding: 32px 24px;
+      }
+
+      .page-layout {
+        width: calc(100% - 32px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        max-width: 100%;
+      }
+
+      .page-layout {
+        margin: 24px auto;
+      }
+    }
+
+    .form-card h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+      font-size: 14px;
+    }
+
+    input[type="email"] {
+      padding: 16px 20px;
+      width: 100%;
+      border: 2px solid #e1e8ed;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: #f8f9fa;
+      color: #333;
+      box-sizing: border-box;
+    }
+
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #3498db;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    .validation-message {
+      font-size: 13px;
+      margin-top: 5px;
+      min-height: 16px;
+    }
+
+    .consent {
+      margin-top: 12px;
+      text-align: left;
+      font-size: 12px;
+      color: #555;
+      background: #f8f9ff;
+      border: 1px solid #e6e8ff;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .consent label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .consent input[type="checkbox"] {
+      margin-top: 2px;
+      width: 18px;
+      height: 18px;
+      accent-color: #667eea;
+    }
+
+    .validation-message.invalid {
+      color: #dc3545;
+    }
+
+    .validation-message.valid {
+      color: #28a745;
+    }
+
+    button {
+      margin-top: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 12px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      min-height: 20px;
+    }
+
+    .message.error {
+      background: #fde2e2;
+      color: #b91c1c;
+    }
+
+    .message.success {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .social-login {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #e1e8ed;
+      display: none;
+    }
+
+    .social-login p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .social-button {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border: 2px solid #e1e8ed;
+      border-radius: 12px;
+      background: white;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .social-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .social-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .social-button.google {
+      border-color: #db4437;
+      color: #db4437;
+    }
+
+    .social-button.google:hover {
+      background: #db4437;
+    }
+
+    .ad-image-wrapper {
+      position: relative;
+      flex: 0 0 35%;
+      height: 100%;
+      min-height: 100px;
+      max-height: 120px;
+      overflow: hidden;
+    }
+
+    .ad-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ad-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(102, 126, 234, 0.9);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .ad-content {
+      flex: 1;
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .ad-content h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.3;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .ad-description {
+      margin: 0;
+      color: #dbeafe;
+      line-height: 1.4;
+      font-size: 13px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-clamp: 2;
+    }
+
+    .ad-timeframe {
+      margin: 4px 0 0 0;
+      color: #fcd34d;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive: Stack vertically on mobile */
+    @media (max-width: 768px) {
+      .ad-card {
+        flex-direction: column;
+        max-height: none;
+        min-height: auto;
+      }
+
+      .ad-image-wrapper {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 140px;
+        min-height: 140px;
+        max-height: 140px;
+      }
+
+      .ad-content {
+        padding: 16px 20px;
+      }
+
+      .ad-content h2 {
+        font-size: 16px;
+      }
+
+      .ad-description {
+        font-size: 12px;
+      }
+    }
+
+    .hidden {
+      <div id="validation-message" class="validation-message"></div></div><div class="consent"><label for="consent"><input type="checkbox" id="consent" name="consent" required><span>By providing your email address,
+      you agree and consent that it may be used for marketing purposes,
+      including but not limited to receiving promotional emails,
+      newsletters,
+      offers,
+      and updates related to our products and services. You may unsubscribe at any time using the link provided in each email. </span></label></div><div id="consent-validation" class="validation-message"></div><button type="submit" id="login-btn" disabled>Connect to WiFi</button></form><div class="message" id="message"></div><div class="social-login" id="social-login"><p>Or continue with: </p> <a href="#" class="social-button google" id="google-login" > <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" > <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+        fill="#4285F4" /> <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+        fill="#34A853" /> <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+        fill="#FBBC05" /> <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+        fill="#EA4335" /> </svg> Continue with Google </a> </div> </div> </div> <script> // ✅ domain HTTPS - Use production URL, or local origin for development
+        const API_BASE=(window.location.hostname==="localhost" || window.location.hostname==="127.0.0.1") ? window.location.origin: "https://wifi.nuanu.io";
+
+      const GATEWAY_IP="172.19.20.1";
+      const HOTSPOT_USER="user";
+      const HOTSPOT_PASS="user";
+      const FINAL_REDIRECT="https://nuanu.com/";
+
+      const emailInput=document.getElementById("email");
+      const validationMessage=document.getElementById("validation-message");
+      const loginBtn=document.getElementById("login-btn");
+      const consentCheckbox=document.getElementById("consent");
+      const consentValidation=document.getElementById("consent-validation");
+      const pageTitleEl=document.getElementById("page-title");
+      const socialLoginSection=document.getElementById("social-login");
+      const googleLoginButton=document.getElementById("google-login");
+      const adCard=document.getElementById("ad-card");
+      const adImageEl=document.getElementById("ad-image");
+      const adTitleEl=document.getElementById("ad-title");
+      const adDescriptionEl=document.getElementById("ad-description");
+      const adTimeframeEl=document.getElementById("ad-timeframe");
+
+      const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      const DEFAULT_SETTINGS= {
+        page_title: "Welcome To NUANU Free WiFi",
+          button_text: "Connect to WiFi",
+          background_image: "url('https://wifi.nuanu.io/img/nuanu.png')",
+          background_color: "#667eea",
+          google_login_enabled: "false",
+          google_oauth_available: "false"
+      }
+
+      ;
+
+      function applySettings(settings) {
+        const pageTitle=settings.page_title || DEFAULT_SETTINGS.page_title;
+        const buttonText=settings.button_text || DEFAULT_SETTINGS.button_text;
+        const backgroundImage=settings.background_image ?? DEFAULT_SETTINGS.background_image;
+        const backgroundColor=settings.background_color || DEFAULT_SETTINGS.background_color;
+        const googleEnabled=settings.google_login_enabled==="true" && settings.google_oauth_available==="true";
+
+        document.title=pageTitle;
+        pageTitleEl.textContent=pageTitle;
+        loginBtn.textContent=buttonText;
+
+        const hasBackgroundImage=backgroundImage && backgroundImage.trim() && backgroundImage !=="none";
+
+        if (hasBackgroundImage) {
+          document.body.style.background=`$ {
+            backgroundImage
+          }
+
+          no-repeat center center fixed,
+          linear-gradient(135deg, $ {
+              backgroundColor
+            }
+
+            , #764ba2)`;
+          document.body.style.backgroundSize="cover";
+        }
+
+        else {
+          document.body.style.background=`linear-gradient(135deg, $ {
+              backgroundColor
+            }
+
+            , #764ba2)`;
+        }
+
+        if (googleEnabled) {
+          googleLoginButton.style.display="flex";
+          googleLoginButton.href=API_BASE+"/auth/google/login";
+          socialLoginSection.style.display="block";
+        }
+
+        else {
+          googleLoginButton.style.display="none";
+
+          if (socialLoginSection.querySelectorAll(".social-button").length===0 || googleLoginButton.style.display==="none") {
+            socialLoginSection.style.display="none";
+          }
+        }
+      }
+
+      function renderAd(ad) {
+        if ( !adCard) return;
+
+        if ( !ad || !ad.image) {
+          adCard.classList.add("hidden");
+          return;
+        }
+
+        adCard.classList.remove("hidden");
+        adImageEl.src=ad.image;
+
+        adImageEl.alt=ad.title ? `Advertisement for $ {
+          ad.title
+        }
+
+        ` : "Advertisement";
+        adTitleEl.textContent=ad.title || "Special Promotion";
+        adDescriptionEl.textContent=ad.description || "Stay tuned for our next campaign.";
+
+        if (ad.end_date || ad.end_time) {
+          adTimeframeEl.textContent=`Active until $ {
+            [ad.end_date,
+            ad.end_time].filter(Boolean).join(" ")
+          }
+
+          `.trim();
+          adTimeframeEl.classList.remove("hidden");
+        }
+
+        else {
+          adTimeframeEl.textContent="";
+          adTimeframeEl.classList.add("hidden");
+        }
+      }
+
+      async function hydrateActiveAd() {
+        if ( !adCard) return;
+
+        try {
+          const response=await fetch(`$ {
+              API_BASE
+            }
+
+            /api/active-ad`, {
+            credentials: "omit"
+          });
+
+        if ( !response.ok) throw new Error(`Unexpected response: $ {
+            response.status
+          }
+
+          `);
+        const payload=await response.json();
+        renderAd(payload.ad);
+      }
+
+      catch (error) {
+        console.warn("Unable to load advertisement.", error);
+        renderAd(null);
+      }
+    }
+
+    async function hydrateSettings() {
+      try {
+        const response=await fetch(`$ {
+            API_BASE
+          }
+
+          /api/settings`, {
+          credentials: "omit"
+        });
+
+      if ( !response.ok) {
+        throw new Error(`Unexpected response: $ {
+            response.status
+          }
+
+          `);
+      }
+
+      const settings=await response.json();
+
+      applySettings({
+        ...DEFAULT_SETTINGS, ...settings
+      });
+    }
+
+    catch (error) {
+      console.error("Unable to load settings, using defaults.", error);
+      applySettings(DEFAULT_SETTINGS);
+    }
+    }
+
+    function updateButtonState() {
+      const email=emailInput.value.trim();
+      const emailValid=emailRegex.test(email);
+
+      if ( !emailValid) {
+        validationMessage.textContent="That's not an email format!";
+        validationMessage.className="validation-message invalid";
+      }
+
+      else {
+        validationMessage.textContent="✓ Looks good!";
+        validationMessage.className="validation-message valid";
+      }
+
+      if (consentCheckbox.checked) {
+        consentValidation.textContent="✓ Thanks for subscribing!";
+        consentValidation.className="validation-message valid";
+      }
+
+      else {
+        consentValidation.textContent="Please check the box to agree to receive our newsletter";
+        consentValidation.className="validation-message invalid";
+      }
+
+      loginBtn.disabled= !(emailValid && consentCheckbox.checked);
+    }
+
+    emailInput.addEventListener("input", updateButtonState);
+    consentCheckbox.addEventListener("change", updateButtonState);
+
+    async function login() {
+      const email=emailInput.value.trim();
+      const msg=document.getElementById("message");
+
+      if ( !emailRegex.test(email)) {
+        msg.textContent="Please enter a valid email.";
+        msg.className="message error";
+        return;
+      }
+
+      if ( !consentCheckbox.checked) {
+        msg.textContent="Please check the box to agree to receive our newsletter";
+        msg.className="message error";
+        return;
+      }
+
+      try {
+        await fetch(`$ {
+            API_BASE
+          }
+
+          /save_trial_email`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+
+          ,
+          body: JSON.stringify({
+            email, consent: true
+          }) // ✅ include consent
+      });
+    }
+
+    catch (error) {
+      console.error("Error saving email:", error);
+    }
+
+    msg.textContent="Connecting to WiFi...";
+
+    setTimeout(()=> {
+        window.location.href="http://" + GATEWAY_IP + "/login?username=" + HOTSPOT_USER + "&password=" + HOTSPOT_PASS + "&dst=" + encodeURIComponent(FINAL_REDIRECT);
+      }
+
+      , 1000);
+    }
+
+    hydrateSettings().finally(()=> {
+        updateButtonState();
+      });
+    hydrateActiveAd();
+    </script></body></html>
