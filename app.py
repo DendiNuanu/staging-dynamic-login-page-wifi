@@ -49,12 +49,12 @@ def _ensure_env_file():
                     "GOOGLE_CLIENT_SECRET=\n"
                     "FACEBOOK_CLIENT_ID=\n"
                     "FACEBOOK_CLIENT_SECRET=\n"
-                    "DASHBOARD_PASSWORD=Nuanu0361\n"
-                    "GATEWAY_IP=172.19.20.1\n"
-                    "HOTSPOT_USER=user\n"
-                    "HOTSPOT_PASS=user\n"
+                    "DASHBOARD_PASSWORD=\n"
+                    "GATEWAY_IP=\n"
+                    "HOTSPOT_USER=\n"
+                    "HOTSPOT_PASS=\n"
                     "DST_URL=https://nuanu.com/\n"
-                    "SECRET_KEY=super-secret-key\n"
+                    "SECRET_KEY=\n"
                 )
     except Exception:
         # Fail silently; the app still has hard-coded fallbacks
@@ -89,8 +89,8 @@ app.add_middleware(
 )
 
 load_dotenv()
-# ==== Konfigurasi Database ====
-# ==== Konfigurasi Database ====
+
+# ==== Database ====
 DB_CONFIG = {
     "dbname": os.getenv("DB_NAME"),
     "user": os.getenv("DB_USER"),
